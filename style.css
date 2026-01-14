@@ -1,0 +1,105 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100dvh;
+}
+
+main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-btn {
+  position: relative;
+  width: 180px;
+  height: 90px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 48px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  overflow: visible;
+  transition: transform 0.16s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+.toggle-btn:active {
+  transform: scale(0.97);
+}
+
+.toggle-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 48px;
+  z-index: 1;
+  background: linear-gradient(90deg, #7f7fd5 0%, #86a8e7 40%, #91eac9 83%, #ffb347 100%);
+  box-shadow: 0 0 48px 8px #00ffd0aa, 0 0 0 0 #1fa2ff55;
+  transition: background 0.5s, box-shadow 0.5s;
+  filter: blur(0.2px);
+}
+
+.toggle-knob {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%) scale(1);
+  width: 62px;
+  height: 62px;
+  background: radial-gradient(circle at 60% 30%, #fff 60%, #24c6dc 100%);
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 32px 4px #24c6dc88, 0 6px 24px 0 #2226;
+  transition:
+    left 0.48s cubic-bezier(.68,-0.55,.27,1.55),
+    background 0.5s, box-shadow 0.5s,
+    filter 0.38s cubic-bezier(.76,-0.3,.22,1.19);
+  filter: blur(0);
+}
+
+.toggle-glow {
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 48px;
+  background: radial-gradient(ellipse at 30% 50%, #7afcff80 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, #f7b42c66 0%, transparent 65%);
+  opacity: 0.76;
+  filter: blur(22px);
+  animation: glowPulse 2.2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+.toggle-btn[aria-pressed="true"] .toggle-bg {
+  background: linear-gradient(90deg, #ff6a00 0%, #ff9966 35%, #f7b42c 83%, #ffe259 100%);
+  box-shadow: 0 0 64px 16px #ffb347cc, 0 0 0 0 #ff996640;
+}
+
+.toggle-btn[aria-pressed="true"] .toggle-knob {
+  left: 102px;
+  background: radial-gradient(circle at 60% 30%, #fff 60%, #ffba7c 100%);
+  box-shadow: 0 0 36px 8px #ffb34790, 0 6px 24px 0 #2226;
+  filter: blur(0.3px) brightness(1.11);
+}
+
+.toggle-btn:focus-visible {
+  outline: 3px solid #00ffd0;
+  outline-offset: 5px;
+}
